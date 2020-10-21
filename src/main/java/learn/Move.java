@@ -12,4 +12,6 @@ public enum Move {
     public int getMoveValue() {
         return moveValue;
     }
+
+
 }
