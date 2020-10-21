@@ -1,12 +1,16 @@
 package learn;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Random;
 
+@Component
 public class Rule {
     private int userScore = 0;
     private int computerScore = 0;
     private int currentRound = 0;
     private int maxRounds = 3;
+    private Move compMove;
 
     public int getUserScore() {
         return userScore;
@@ -16,9 +20,22 @@ public class Rule {
         return computerScore;
     }
 
+    public Move getCompMove() {
+        return compMove;
+    }
+
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    public Rule() {
+    }
+
     public Move generateComputerMove() {
         Random random = new Random();
-        return Move.values()[random.nextInt(3) + 1];
+        Move move = Move.values()[random.nextInt(3)];
+        System.out.println(move);
+        return move;
     }
 
     public String compare(String userMoveStr) {
@@ -27,7 +44,8 @@ public class Rule {
         Move userMove;
 
         userMove = Move.valueOf(userMoveStr);
-        Move compMove = generateComputerMove();
+        compMove = generateComputerMove();
+
 
         switch(userMove) {
             case ROCK:
